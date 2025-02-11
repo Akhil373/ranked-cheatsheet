@@ -39,6 +39,33 @@ const listOfMaps = {
     },
 }
 
+const CDN = {
+    snakePrairie: "snakePrairie_ncwlzr",
+    canalGrande: "canalGrande_gqurlm",
+    shootingStar: "shootingStar_gqfsqt",
+    hideout: "hideout_ddf5kz",
+    hardRockMine: "hardRockMine_ylcgwe",
+    doubleSwoosh: "doubleSwoosh_wyrmlo",
+    lastStop: "lastStop_pdbnny",
+    Undermine: "Undermine_egopmj",
+    tripleDribble: "tripleDribble_vtiyd8",
+    centerStage: "centerStage_mloitm",
+    pinballDreams: "pinballDreams_p62njb",
+    sneakyFields: "sneakyFields_vxdwgq",
+    hotPotato: "hotPotato_yrzoyq",
+    safeZone: "safeZone_bhlacp",
+    bridgeTooFar: "bridgeTooFar_naqqfx",
+    kaboomCanyon: "kaboomCanyon_vek5al",
+    duelingBeetles: "duelingBeetles_jb2ino",
+    ringOfFire: "ringOfFire_xplda0",
+    parallelPlays: "parallelPlays_drywrt",
+    openBusiness: "openBusiness_xewklf",
+    outInTheOpen: "outInTheOpen_epjxrj",
+    goldarmGulch: "goldarmGulch_yrf4tc",
+    flaringPhoenix: "flaringPhoenix_c7mpzs",
+    bellesRock: "bellesRock_dznn4y",
+}
+
 type GameMode = keyof typeof listOfMaps
 
 const buttons: GameMode[] = [
@@ -53,7 +80,9 @@ const buttons: GameMode[] = [
 function App() {
     const [mode, setMode] = useState<GameMode>("Bounty")
     const [dropdownVisible, setDropdownVisible] = useState(false)
-    const [selectedMap, setSelectedMap] = useState<string | null>(null)
+    const [selectedMap, setSelectedMap] = useState<keyof typeof CDN | null>(
+        null
+    )
 
     const showMode = (data: GameMode) => {
         setMode(data)
@@ -66,7 +95,9 @@ function App() {
     }
 
     const showMap = (mapName: string) => {
-        setSelectedMap((prevMap) => (prevMap === mapName ? "" : mapName))
+        setSelectedMap((prevMap) =>
+            prevMap === mapName ? null : (mapName as keyof typeof CDN)
+        )
     }
 
     return (
@@ -110,7 +141,7 @@ function App() {
                                 {selectedMap ? (
                                     <img
                                         className="max-w-[55%] object-contain border-5 rounded-xl border-white opacity-0 transition-opacity duration-1000"
-                                        src={`src/assets/cheatSheet/${selectedMap}.webp`}
+                                        src={`https://res.cloudinary.com/dyoojcyfa/image/upload/v1739294645/${CDN[selectedMap]}.webp`}
                                         alt={selectedMap}
                                         onLoad={(e) =>
                                             e.currentTarget.classList.replace(
