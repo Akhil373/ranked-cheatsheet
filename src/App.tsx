@@ -32,10 +32,10 @@ const listOfMaps = {
         openBusiness: "Open Business",
     },
     Knockout: {
-        outinTheOpen: "Out in The Open",
+        outInTheOpen: "Out in The Open",
         goldarmGulch: "Goldarm Gulch",
         flaringPhoenix: "Flaring Phoenix",
-        belleRock: "Belle's Rock",
+        bellesRock: "Belle's Rock",
     },
 }
 
