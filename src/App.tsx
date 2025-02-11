@@ -1,59 +1,14 @@
 import {useState} from "react"
-
-const listOfMaps = {
-    Bounty: {
-        snakePrairie: "Snake Prairie",
-        canalGrande: "Canal Grande",
-        shootingStar: "Shooting Star",
-        hideout: "Hideout",
-    },
-    "Gem Grab": {
-        hardRockMine: "Hard Rock Mine",
-        doubleSwoosh: "Double Swoosh",
-        lastStop: "Last Stop",
-        Undermine: "Undermine",
-    },
-    "Brawl Ball": {
-        tripleDribble: "Triple Dribble",
-        centerStage: "Center Stage",
-        pinballDreams: "Pinball Dreams",
-        sneakyFields: "Sneaky Fields",
-    },
-    Heist: {
-        hotPotato: "Hot Potato",
-        safeZone: "Safe Zone",
-        bridgeTooFar: "Bridge Too Far",
-        kaboomCanyon: "Kaboom Canyon",
-    },
-    "Hot Zone": {
-        duelingBeetles: "Dueling Beetles",
-        ringOfFire: "Ring Of Fire",
-        parallelPlays: "Parallel Plays",
-        openBusiness: "Open Business",
-    },
-    Knockout: {
-        outInTheOpen: "Out in The Open",
-        goldarmGulch: "Goldarm Gulch",
-        flaringPhoenix: "Flaring Phoenix",
-        bellesRock: "Belle's Rock",
-    },
-}
+import {listOfMaps, CDN, buttons} from "./listOfMaps.ts";
 
 type GameMode = keyof typeof listOfMaps
-
-const buttons: GameMode[] = [
-    "Bounty",
-    "Gem Grab",
-    "Brawl Ball",
-    "Heist",
-    "Hot Zone",
-    "Knockout",
-]
 
 function App() {
     const [mode, setMode] = useState<GameMode>("Bounty")
     const [dropdownVisible, setDropdownVisible] = useState(false)
-    const [selectedMap, setSelectedMap] = useState<string | null>(null)
+    const [selectedMap, setSelectedMap] = useState<keyof typeof CDN | null>(
+        null
+    )
 
     const showMode = (data: GameMode) => {
         setMode(data)
@@ -66,8 +21,12 @@ function App() {
     }
 
     const showMap = (mapName: string) => {
-        setSelectedMap((prevMap) => (prevMap === mapName ? "" : mapName))
+        setSelectedMap((prevMap) =>
+            prevMap === mapName ? null : (mapName as keyof typeof CDN)
+        )
     }
+
+    const backgroundImg = 'https://res.cloudinary.com/dyoojcyfa/image/upload/v1739294876/background_ryymbm.png';
 
     return (
         <div className="h-screen relative box-border overflow-hidden">
@@ -110,7 +69,7 @@ function App() {
                                 {selectedMap ? (
                                     <img
                                         className="max-w-[55%] object-contain border-5 rounded-xl border-white opacity-0 transition-opacity duration-1000"
-                                        src={`src/assets/cheatSheet/${selectedMap}.webp`}
+                                        src={`https://res.cloudinary.com/dyoojcyfa/image/upload/v1739294645/${CDN[selectedMap]}.webp`}
                                         alt={selectedMap}
                                         onLoad={(e) =>
                                             e.currentTarget.classList.replace(
@@ -127,7 +86,7 @@ function App() {
             </div>
 
             <div
-                className={`transition-all duration-500 absolute inset-0 left-[50%] bg-[url('/src/assets/background.png')] bg-cover bg-no-repeat flex justify-center ${
+                className={`transition-all duration-500 absolute inset-0 left-[50%] bg-[url(${backgroundImg})] bg-cover bg-no-repeat flex justify-center ${
                     selectedMap ? "top-[10%]" : null
                 }`}
             >
