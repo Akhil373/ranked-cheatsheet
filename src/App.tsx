@@ -1,6 +1,33 @@
 import {useState} from "react"
 import {listOfMaps, CDN, buttons} from "./listOfMaps.ts";
 
+const CDN = {
+    snakePrairie: "snakePrairie_ncwlzr",
+    canalGrande: "canalGrande_gqurlm",
+    shootingStar: "shootingStar_gqfsqt",
+    hideout: "hideout_ddf5kz",
+    hardRockMine: "hardRockMine_ylcgwe",
+    doubleSwoosh: "doubleSwoosh_wyrmlo",
+    lastStop: "lastStop_pdbnny",
+    Undermine: "Undermine_egopmj",
+    tripleDribble: "tripleDribble_vtiyd8",
+    centerStage: "centerStage_mloitm",
+    pinballDreams: "pinballDreams_p62njb",
+    sneakyFields: "sneakyFields_vxdwgq",
+    hotPotato: "hotPotato_yrzoyq",
+    safeZone: "safeZone_bhlacp",
+    bridgeTooFar: "bridgeTooFar_naqqfx",
+    kaboomCanyon: "kaboomCanyon_vek5al",
+    duelingBeetles: "duelingBeetles_jb2ino",
+    ringOfFire: "ringOfFire_xplda0",
+    parallelPlays: "parallelPlays_drywrt",
+    openBusiness: "openBusiness_xewklf",
+    outInTheOpen: "outInTheOpen_epjxrj",
+    goldarmGulch: "goldarmGulch_yrf4tc",
+    flaringPhoenix: "flaringPhoenix_c7mpzs",
+    bellesRock: "bellesRock_dznn4y",
+}
+
 type GameMode = keyof typeof listOfMaps
 
 function App() {
