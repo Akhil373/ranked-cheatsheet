@@ -1,35 +1,5 @@
 import {useState} from "react"
-import {listOfMaps, CDN, buttons} from "./listOfMaps.ts";
-
-const CDN = {
-    snakePrairie: "snakePrairie_ncwlzr",
-    canalGrande: "canalGrande_gqurlm",
-    shootingStar: "shootingStar_gqfsqt",
-    hideout: "hideout_ddf5kz",
-    hardRockMine: "hardRockMine_ylcgwe",
-    doubleSwoosh: "doubleSwoosh_wyrmlo",
-    lastStop: "lastStop_pdbnny",
-    Undermine: "Undermine_egopmj",
-    tripleDribble: "tripleDribble_vtiyd8",
-    centerStage: "centerStage_mloitm",
-    pinballDreams: "pinballDreams_p62njb",
-    sneakyFields: "sneakyFields_vxdwgq",
-    hotPotato: "hotPotato_yrzoyq",
-    safeZone: "safeZone_bhlacp",
-    bridgeTooFar: "bridgeTooFar_naqqfx",
-    kaboomCanyon: "kaboomCanyon_vek5al",
-    duelingBeetles: "duelingBeetles_jb2ino",
-    ringOfFire: "ringOfFire_xplda0",
-    parallelPlays: "parallelPlays_drywrt",
-    openBusiness: "openBusiness_xewklf",
-    outInTheOpen: "outInTheOpen_epjxrj",
-    goldarmGulch: "goldarmGulch_yrf4tc",
-    flaringPhoenix: "flaringPhoenix_c7mpzs",
-    bellesRock: "bellesRock_dznn4y",
-}
-
-type GameMode = keyof typeof listOfMaps
-
+import {listOfMaps, CDN, buttons, GameMode} from "./listOfMaps.ts";
 function App() {
     const [mode, setMode] = useState<GameMode>("Bounty")
     const [dropdownVisible, setDropdownVisible] = useState(false)
@@ -53,7 +23,6 @@ function App() {
         )
     }
 
-    const backgroundImg = 'https://res.cloudinary.com/dyoojcyfa/image/upload/v1739294876/background_ryymbm.png';
 
     return (
         <div className="h-screen relative box-border overflow-hidden">
@@ -61,13 +30,14 @@ function App() {
                 <div className="text-white flex min-h-full items-start mt-5 w-screen ml-[4%]">
                     <div className="flex gap-5 flex-col">
                         <div className="flex gap-5">
-                            {buttons.map((item, index) => (
+                            {Object.entries(buttons).map(([key, value]) => (
                                 <button
-                                    key={index}
-                                    className="z-2 hover:cursor-pointer min-w-25 bg-green-700/50 py-3 rounded-xl hover:bg-green-600"
-                                    onClick={() => showMode(item)}
+                                    key={key}
+                                    className={`z-2 hover:cursor-pointer text-black font-bold min-w-25 py-3 rounded-xl`}
+                                    style={{backgroundColor: value}}
+                                    onClick={() => showMode(key as GameMode)}
                                 >
-                                    {item}
+                                    {key}
                                 </button>
                             ))}
                         </div>
@@ -113,7 +83,7 @@ function App() {
             </div>
 
             <div
-                className={`transition-all duration-500 absolute inset-0 left-[50%] bg-[url(${backgroundImg})] bg-cover bg-no-repeat flex justify-center ${
+                className={`transition-all duration-500 absolute inset-0 left-[50%] bg-[url(https://res.cloudinary.com/dyoojcyfa/image/upload/v1739294876/background_ryymbm.png)] bg-cover bg-no-repeat flex justify-center ${
                     selectedMap ? "top-[10%]" : null
                 }`}
             >

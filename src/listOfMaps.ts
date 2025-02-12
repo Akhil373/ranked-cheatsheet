@@ -1,3 +1,5 @@
+export type GameMode = "Bounty" | "Gem Grab" | "Brawl Ball" | "Heist" | "Hot Zone" | "Knockout";
+
 export const listOfMaps = {
     Bounty: {
         snakePrairie: "Snake Prairie",
@@ -64,13 +66,11 @@ export const CDN = {
     bellesRock: "bellesRock_dznn4y",
 }
 
-export const buttons: GameMode[] = [
-    "Bounty",
-    "Gem Grab",
-    "Brawl Ball",
-    "Heist",
-    "Hot Zone",
-    "Knockout",
-]
-
-type GameMode = keyof typeof listOfMaps
+export const buttons: { [key: string]: string } = {
+    "Bounty": "#02a4c8",
+    "Gem Grab" : "#9641ab",
+    "Brawl Ball": "#0a92b1",
+    "Heist": "#5b7b85",
+    "Hot Zone": "#bb3345",
+    "Knockout": "#c55827",
+}
